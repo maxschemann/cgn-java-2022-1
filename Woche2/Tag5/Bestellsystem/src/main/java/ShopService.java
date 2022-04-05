@@ -4,27 +4,26 @@ import java.util.Scanner;
 
 public class ShopService {
     public static void main(String[] args) {
-        int selection = mainMenu();
+        mainMenu();
+    }
+
+    public static void mainMenu() {
+        int selection=0;
+        while (selection != 1 && selection != 2) {
+            System.out.println("Bitte auswählen: [1] Produkte [2] Bestellungen");
+            Scanner scan = new Scanner(System.in);
+            try {
+                selection = scan.nextInt();}
+             catch (Exception e) {System.out.println("Nur Zahlen erlaubt."); mainMenu();
+            }
+            if (selection != 1 && selection != 2){System.out.println("Ungültige Eingabe");
+        }}
         if (selection == 1) {
-            System.out.println("listAllProducts()");}
-        else if (selection==2) System.out.println("listAllOrders");
-        else {
-            System.out.println("Bitte wiederholen Sie die Eingabe");
-            selection = mainMenu();
-        }
+            System.out.println("listAllProducts()");
+        } else if (selection == 2) {System.out.println("listAllOrders");}
 
     }
 
-    public static int mainMenu() {
-        System.out.println("Bitte auswählen: [1] Produkte [2] Bestellungen");
-        Scanner scan = new Scanner(System.in);
-        int selection=0;
-        try {selection = scan.nextInt();}
-        catch (Exception e){
-            System.out.println("Ungültige Eingabe");
-        }
-        System.out.println(selection);
-        return selection;}
 /*
     public static boolean checkSelection(){
         try {
