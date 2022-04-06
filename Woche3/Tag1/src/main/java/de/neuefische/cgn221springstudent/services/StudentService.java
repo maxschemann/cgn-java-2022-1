@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class StudentService {
@@ -17,8 +18,9 @@ public class StudentService {
         this.repo = repo;
     }
 
-    public void addStudent(Student student) {
+    public Student addStudent(Student student) {
         repo.addStudent(student);
+        return student;
     }
 
     public Student getStudentById(String id) {
@@ -40,5 +42,23 @@ public class StudentService {
         System.out.println(student);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentService that = (StudentService) o;
+        return Objects.equals(repo, that.repo);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(repo);
+    }
+
+    @Override
+    public String toString() {
+        return "StudentService{" +
+                "repo=" + repo +
+                '}';
+    }
 }
