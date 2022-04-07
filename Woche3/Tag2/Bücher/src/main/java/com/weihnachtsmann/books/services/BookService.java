@@ -6,32 +6,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class BookService {
 
     private final BookRepo repo;
-@Autowired
-    public BookService (BookRepo repo){
+
+    @Autowired
+    public BookService(BookRepo repo) {
         this.repo = repo;
     }
 
-    public Book addBook (Book book){
-       return repo.addBook(book);
+    public Book addBook(Book book) {
+        return repo.addBook(book);
     }
 
-    public Book getBookByISBN (String isbn){
-        return repo.getBookByISBN(isbn);
+    public Book getBookByISBN(String isbn) {
+        Optional<Book> book = repo.getBookByISBN(isbn);
+        return book.orElseThrow();
     }
 
-    public HashMap<String, Book> getAllBooks (){
+
+
+    public HashMap<String, Book> getAllBooks() {
         return repo.getAllBooks();
     }
 
-    public Book deleteBookByISBN (String isbn){
-       return repo.deleteBookByISBN(isbn);
+    public Book deleteBookByISBN(String isbn) {
+        return repo.deleteBookByISBN(isbn);
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -48,8 +55,6 @@ public class BookService {
 
     @Override
     public String toString() {
-        return "bookService{" +
-                "repo=" + repo +
-                '}';
+        return "bookService{" + "repo=" + repo + '}';
     }
 }

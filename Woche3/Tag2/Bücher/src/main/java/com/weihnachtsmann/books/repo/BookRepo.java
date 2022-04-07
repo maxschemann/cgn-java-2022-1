@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Optional;
 
 @Repository
 public class BookRepo {
@@ -16,8 +17,8 @@ public class BookRepo {
         return book;
     }
 
-    public Book getBookByISBN (String isbn){
-        return repo.get(isbn);
+    public Optional<Book> getBookByISBN (String isbn){
+        return Optional.ofNullable(repo.get(isbn));
     }
 
     public HashMap<String, Book> getAllBooks (){

@@ -33,7 +33,7 @@ public class BookController {
         return service.addBook(book);
     }
 
-    @DeleteMapping (path="delete/"+"{isbn}")
+    @DeleteMapping (path="{isbn}")
     public Book deleteBookById(@PathVariable String isbn){
         return service.deleteBookByISBN(isbn);
     }
